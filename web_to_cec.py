@@ -72,13 +72,20 @@ class cec_(object):
 
     @cherrypy.expose    
     def sendKey(self,key=''):
-	if len(key) > 0 and (key in self.cmd or key in "On Off"):
-        	key = "{0:0>2}".format(hex(self.cmd[key])[2:])
-        	self.client.stdin.write('tx 14:44:'+key+'\n')
-        	self.client.stdin.write('tx 14:45\n')
-        	self.check_for('45')
-		return self.htmltxt.replace("%%body%%","Key Ok")
-	return self.htmltxt.replace("%%body%%","Error")
+	    if len(key) > 0 and key in self.cmd:
+        key = "{0:0>2}".format(hex(self.cmd[key])[2:])
+        self.client.stdin.write('tx 14:44:'+key+'\n')
+        self.client.stdin.write('tx 14:45\n')
+        self.check_for('45')
+		    return self.htmltxt.replace("%%body%%","Key Ok")
+      elif key in "On":
+        self.client.stdin.write('on 0\n')
+        return self.htmltxt.replace("%%body%%","Key Ok")
+      elif key in "Off":
+        self.client.stdin.write('standby 0\n')
+        return self.htmltxt.replace("%%body%%","Key Ok")
+
+	    return self.htmltxt.replace("%%body%%","Error")
 
     @cherrypy.expose
     def quit(self):
