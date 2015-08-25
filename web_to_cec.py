@@ -72,7 +72,7 @@ class cec_(object):
 
     @cherrypy.expose    
     def sendKey(self,key=''):
-	if len(key) > 0 and key in self.cmd:
+	if len(key) > 0 and (key in self.cmd or key in "On Off"):
         	key = "{0:0>2}".format(hex(self.cmd[key])[2:])
         	self.client.stdin.write('tx 14:44:'+key+'\n')
         	self.client.stdin.write('tx 14:45\n')
