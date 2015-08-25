@@ -26,14 +26,19 @@ class cec_(object):
           <body>
 	    %%body%%
             <form method="get" action="sendKey">
-	      
-	      <button name="key" value="Up" type="submit">Up</button> </br>
+	      <button name="key" value="On" type="submit">On</button>
+	      <button name="key" value="Up" type="submit">Up</button> 
+        <button name="key" value="Off" type="submit">Off</button></br>
 
-              <button name="key" value="Left" type="submit">Left</button>
-	      <button name="key" value="Enter" type="submit">Enter</button>
+
+        <button name="key" value="Left" type="submit">Left</button>
+	      <button name="key" value="Select" type="submit">Select</button>
 	      <button name="key" value="Right" type="submit">Right</button> </br>
 
+
+        <button name="key" value="Enter" type="submit">Enter</button>
 	      <button name="key" value="Down" type="submit">Down</button>
+        <button name="key" value="Exit" type="submit">Exit</button>
 
             </form>
           </body>
